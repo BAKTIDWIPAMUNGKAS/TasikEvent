@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak - TasikEvent</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="image/primary-logo.png" alt="TasikEvent Logo">
+                    </div>
+                    <div class="logo-text-container">
+                        <div class="logo-text">TasikEvent</div>
+                    </div>
+                </div>
+    
+                <!-- Hamburger menu -->
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+    
+                <nav class="nav-links" id="nav-menu">
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="event.html">Acara</a></li>
+                        <li><a href="categori.html">Kategori</a></li>
+                        <li><a href="about.html">Tentang</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                    </ul>
+                </nav>
+    
+                <ul class="auth-buttons" id="auth-menu">
+                    <li><a href="login.html">Masuk</a></li>
+                    <li><a href="register.html">Daftar</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contact Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <img src="image/hero-image-contact.jpg" alt="Konser di Tasikmalaya">
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Hubungi Kami</h1>
+                <p>Punya pertanyaan atau ingin bekerja sama? Jangan ragu untuk menghubungi tim TasikEvent</p>
+                <a href="#" class="hero-btn">Hubungi Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h2 class="contact-form-title">Kirim Pesan</h2>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="name" placeholder="Masukkan nama lengkap Anda">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Masukkan alamat email Anda">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subjek</label>
+                            <input type="text" class="form-control" id="subject" placeholder="Masukkan subjek pesan">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Tulis pesan Anda di sini..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h2 class="contact-info-title">Informasi Kontak</h2>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h4>Alamat</h4>
+                            <p>Jl. Siliwangi No. 123, Kota Tasikmalaya, Jawa Barat, Indonesia</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h4>Telepon</h4>
+                            <p>+62 265 123456</p>
+                            <p>+62 812 3456 7890</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h4>Email</h4>
+                            <p>info@tasikevent.id</p>
+                            <p>support@tasikevent.id</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h4>Jam Kerja</h4>
+                            <p>Senin - Jumat: 09:00 - 17:00</p>
+                            <p>Sabtu: 09:00 - 14:00</p>
+                        </div>
+                    </div>
+                    
+                    <h4 style="margin-top: 20px; margin-bottom: 10px; color: var(--dark);">Ikuti Kami</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title">Lokasi Kami</h2>
+            <p class="section-subtitle">Temukan kami di pusat Kota Tasikmalaya</p>
+            
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.1082475131366!2d108.22620807500047!3d-7.341739692666861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f57667e1219db%3A0x8d706800d62e731d!2sJl.%20Siliwangi%20No.123%2C%20Cikalang%2C%20Kec.%20Tawang%2C%20Kab.%20Tasikmalaya%2C%20Jawa%20Barat%2046114!5e0!3m2!1sen!2sid!4v1746118797950!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Pertanyaan Umum</h2>
+            <p class="section-subtitle">Jawaban atas pertanyaan yang sering diajukan</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Bagaimana cara mendaftarkan acara saya di TasikEvent?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Untuk mendaftarkan acara di TasikEvent, Anda perlu membuat akun penyelenggara terlebih dahulu, kemudian klik tombol "Tambah Acara" di dashboard penyelenggara. Isi formulir dengan informasi lengkap acara Anda dan kirimkan untuk ditinjau oleh tim kami.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Berapa lama proses verifikasi acara di TasikEvent?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Proses verifikasi acara di TasikEvent membutuhkan waktu sekitar 1-2 hari kerja. Tim kami akan memeriksa kesesuaian acara dengan ketentuan platform, dan Anda akan mendapatkan notifikasi melalui email setelah acara disetujui.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Apakah TasikEvent menyediakan layanan tiket untuk acara?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ya, TasikEvent menyediakan layanan tiket online untuk acara. Penyelenggara dapat mengatur detail tiket seperti harga, jumlah, dan batas waktu penjualan. Kami juga menyediakan sistem check-in digital untuk memudahkan proses di hari acara.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Bagaimana cara berlangganan newsletter TasikEvent?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Untuk berlangganan newsletter TasikEvent, Anda dapat mengisi formulir berlangganan di halaman utama situs kami atau mengirimkan email ke subscribe@tasikevent.id dengan subjek "Berlangganan Newsletter".</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Bagaimana cara menjadi sponsor di acara TasikEvent?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Untuk menjadi sponsor atau mitra TasikEvent, silakan kirim proposal kerjasama ke partnership@tasikevent.id. Tim kami akan meninjau proposal dan menghubungi Anda untuk mendiskusikan detail kerja sama selanjutnya.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section class="contact-cta">
+        <div class="container">
+            <h2 class="section-title">Jadilah Bagian dari TasikEvent</h2>
+            <p class="section-subtitle">Daftarkan diri Anda untuk menerima informasi terbaru tentang acara di Tasikmalaya</p>
+            <a href="#" class="contact-cta-btn">Daftar Sekarang</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Column 1 -->
+                <div class="footer-column">
+                    <h3>TasikEvent</h3>
+                    <p>Platform informasi acara terkini di Tasikmalaya. Temukan konser, festival, workshop, dan berbagai acara menarik di Kota Tasikmalaya.</p>
+                    <div class="footer-social">
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div class="footer-column">
+                    <h3>Navigasi</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="event.html">Acara</a></li>
+                        <li><a href="categori.html">Kategori</a></li>
+                        <li><a href="about.html">Tentang</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div class="footer-column">
+                    <h3>Kategori</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Musik</a></li>
+                        <li><a href="#">Seni</a></li>
+                        <li><a href="#">Kuliner</a></li>
+                        <li><a href="#">Teater</a></li>
+                        <li><a href="#">Olahraga</a></li>
+                        <li><a href="#">Pendidikan</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul class="footer-links">
+                        <li>Email: info@tasikevent.id</li>
+                        <li>Phone: +62 265 123456</li>
+                        <li>Alamat: Jl. Siliwangi No. 123, Tasikmalaya</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 TasikEvent. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-container" id="chatbot-container">
+        <!-- Chatbot Toggle Button -->
+        <div class="chatbot-toggle" id="chatbot-toggle">
+            <i class="fas fa-comment"></i>
+        </div>
+        
+        <!-- Chatbot Box -->
+        <div class="chatbot-box">
+            <!-- Chatbot Header -->
+            <div class="chatbot-header">
+                <img src="image/chatbot-image.png" alt="Bot Avatar">
+                <div>
+                    <div class="chatbot-title">TasikEvent Assistant</div>
+                    <div class="chatbot-status">Online</div>
+                </div>
+            </div>
+            
+            <!-- Chatbot Messages -->
+            <div class="chatbot-messages" id="chatbot-messages">
+                <!-- Initial Bot Message -->
+                <div class="message bot">
+                    Halo! Selamat datang di TasikEvent. Ada yang bisa saya bantu tentang acara di Tasikmalaya?
+                    <div class="message-time">Baru saja</div>
+                </div>
+                
+                <!-- Quick Replies -->
+                <div class="quick-replies">
+                    <div class="quick-reply" onclick="sendQuickReply('Acara minggu ini')">Acara minggu ini</div>
+                    <div class="quick-reply" onclick="sendQuickReply('Kategori musik')">Kategori musik</div>
+                    <div class="quick-reply" onclick="sendQuickReply('Cara beli tiket')">Cara beli tiket</div>
+                </div>
+            </div>
+            
+            <!-- Chatbot Input -->
+            <div class="chatbot-input">
+                <input type="text" id="user-input" placeholder="Ketik pesan Anda..." autocomplete="off">
+                <button class="send-btn" id="send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js" defer></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const authMenu = document.getElementById('auth-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', function () {
+                navMenu.classList.toggle('active');
+                authMenu.classList.toggle('active');
+            });
+        }
+
+        document.querySelectorAll('#nav-menu a, #auth-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                authMenu.classList.remove('active');
+            });
+        });  
+
+        // FAQ Functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                const currentlyActive = document.querySelector('.faq-item.active');
+                
+                if(currentlyActive && currentlyActive !== item) {
+                    currentlyActive.classList.remove('active');
+                }
+                
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Form validation and submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const subject = document.getElementById('subject').value.trim();
+                const message = document.getElementById('message').value.trim();
+                
+                if (!name || !email || !subject || !message) {
+                    alert('Silakan lengkapi semua kolom formulir.');
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    alert('Silakan masukkan alamat email yang valid.');
+                    return;
+                }
+                
+                // Simulate form submission
+                const submitBtn = this.querySelector('.submit-btn');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    alert('Pesan Anda telah berhasil dikirim! Tim kami akan segera menghubungi Anda.');
+                    contactForm.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 1500);
+            });
+        }
+        
+        // Email validation helper
+        function isValidEmail(email) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(email);
+        }
+        
+        // Animation for contact info items
+        const contactInfoItems = document.querySelectorAll('.contact-info-item');
+        
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+    
+            contactInfoItems.forEach(item => {
+                item.style.opacity = 0;
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(item);
+            });
+        }
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TasikEvent - Informasi Acara Tasikmalaya</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="image/primary-logo.png" alt="TasikEvent Logo">
+                    </div>
+                    <div class="logo-text-container">
+                        <div class="logo-text">TasikEvent</div>
+                    </div>
+                </div>
+    
+                <!-- Hamburger menu -->
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+    
+                <nav class="nav-links" id="nav-menu">
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="event.html">Acara</a></li>
+                        <li><a href="categori.html">Kategori</a></li>
+                        <li><a href="about.html">Tentang</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                    </ul>
+                </nav>
+    
+                <ul class="auth-buttons" id="auth-menu">
+                    <li><a href="login.html">Masuk</a></li>
+                    <li><a href="register.html">Daftar</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <img src="image/hero-image.jpg" alt="Konser di Tasikmalaya">
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Temukan Acara Terbaik di Tasikmalaya</h1>
+                <p>Jelajahi konser, festival, workshop, dan berbagai acara menarik di Kota Tasikmalaya</p>
+                <a href="categori.html" class="hero-btn">Jelajahi Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Events -->
+    <section class="featured-events">
+        <div class="container" id="acara">
+            <h2 class="section-title">Acara Unggulan</h2>
+            <p class="section-subtitle">Jangan lewatkan acara-acara terbaik di Tasikmalaya</p>
+            
+            <div class="event-grid">
+                <!-- Event 1 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="image/event1.jpg" alt="Tasik Jazz Festival">
+                    </div>
+                    <div class="event-info">
+                        <div class="event-date">15 Mei 2025</div>
+                        <h3 class="event-title">Tasik Jazz Festival</h3>
+                        <p class="event-location">Taman Kota Tasikmalaya</p>
+                        <p class="event-description">Nikmati pertunjukan jazz dari musisi terbaik lokal dan nasional dalam suasana yang indah di Taman Kota.</p>
+                        <a href="ticket.html?id=1" class="event-btn">Detail</a>
+                    </div>
+                </div>
+                
+                <!-- Event 2 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="image/event2.jpg" alt="Pameran Seni Rupa">
+                    </div>
+                    <div class="event-info">
+                        <div class="event-date">20 Mei 2025</div>
+                        <h3 class="event-title">Pameran Seni Rupa</h3>
+                        <p class="event-location">Galeri Seni Tasikmalaya</p>
+                        <p class="event-description">Menghadirkan karya-karya terbaik dari seniman lokal Tasikmalaya dengan tema "Harmoni Alam".</p>
+                        <a href="ticket.html?id=2" class="event-btn">Detail</a>
+                    </div>
+                </div>
+                
+                <!-- Event 3 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="image/event3.jpg" alt="Tasik Food Festival">
+                    </div>
+                    <div class="event-info">
+                        <div class="event-date">25 Mei 2025</div>
+                        <h3 class="event-title">Tasik Food Festival</h3>
+                        <p class="event-location">Alun-alun Tasikmalaya</p>
+                        <p class="event-description">Festival kuliner yang menampilkan beragam kuliner khas Tasikmalaya dan sekitarnya.</p>
+                        <a href="ticket.html?id=3" class="event-btn">Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container" id="kategori">
+            <h2 class="section-title">Kategori Acara</h2>
+            <p class="section-subtitle">Temukan acara sesuai dengan minat Anda</p>
+            
+            <div class="category-grid">
+                <!-- Category 1 -->
+                <div class="category-card">
+                    <div class="category-icon">🎵</div>
+                    <h3 class="category-title">Musik</h3>
+                    <p class="category-count">24 Acara</p>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="category-card">
+                    <div class="category-icon">🎨</div>
+                    <h3 class="category-title">Seni</h3>
+                    <p class="category-count">18 Acara</p>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="category-card">
+                    <div class="category-icon">🍽️</div>
+                    <h3 class="category-title">Kuliner</h3>
+                    <p class="category-count">15 Acara</p>
+                </div>
+                
+                <!-- Category 4 -->
+                <div class="category-card">
+                    <div class="category-icon">🎭</div>
+                    <h3 class="category-title">Teater</h3>
+                    <p class="category-count">12 Acara</p>
+                </div>
+                
+                <!-- Category 5 -->
+                <div class="category-card">
+                    <div class="category-icon">🏃</div>
+                    <h3 class="category-title">Olahraga</h3>
+                    <p class="category-count">20 Acara</p>
+                </div>
+                
+                <!-- Category 6 -->
+                <div class="category-card">
+                    <div class="category-icon">📚</div>
+                    <h3 class="category-title">Pendidikan</h3>
+                    <p class="category-count">16 Acara</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="upcoming-events">
+        <div class="container">
+            <h2 class="section-title">Acara Mendatang</h2>
+            <p class="section-subtitle">Jadwalkan waktu Anda untuk acara-acara berikut</p>
+            
+            <div class="event-grid">
+                <!-- Event 1 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="image/event4.jpg" alt="Workshop Fotografi">
+                    </div>
+                    <div class="event-info">
+                        <div class="event-date">2 Juni 2025</div>
+                        <h3 class="event-title">Workshop Fotografi</h3>
+                        <p class="event-location">Studio Kreatif Tasikmalaya</p>
+                        <p class="event-description">Belajar teknik fotografi langsung dari fotografer profesional dengan pengalaman 15 tahun.</p>
+                        <a href="ticket.html?id=7" class="event-btn">Detail</a>
+                    </div>
+                </div>
+                
+                <!-- Event 2 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="image/event5.jpg" alt="Tasik Run 2025">
+                    </div>
+                    <div class="event-info">
+                        <div class="event-date">10 Juni 2025</div>
+                        <h3 class="event-title">Tasik Run 2025</h3>
+                        <p class="event-location">Stadion Wiradadaha</p>
+                        <p class="event-description">Lari 10K menyusuri kota Tasikmalaya untuk mendukung pendidikan anak-anak kurang mampu.</p>
+                        <a href="ticket.html?id=8" class="event-btn">Detail</a>
+                    </div>
+                </div>
+                
+                <!-- Event 3 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="image/event6.jpg" alt="Konser Musik Tradisional">
+                    </div>
+                    <div class="event-info">
+                        <div class="event-date">15 Juni 2025</div>
+                        <h3 class="event-title">Konser Musik Tradisional</h3>
+                        <p class="event-location">Gedung Kesenian Tasikmalaya</p>
+                        <p class="event-description">Pertunjukan musik tradisional Sunda dengan konsep modern yang mengagumkan dan seru.</p>
+                        <a href="ticket.html?id=9" class="event-btn">Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Apa Kata Mereka</h2>
+            <p class="section-subtitle">Pengalaman pengunjung acara di Tasikmalaya</p>
+            
+            <div class="testimonial-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Berkat TasikEvent, saya tidak pernah ketinggalan konser favorit saya. Informasinya lengkap dan selalu up-to-date."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-image">
+                            <img src="image/testimoni1.jpg" alt="Dian Sastro">
+                        </div>
+                        <div class="testimonial-author-info">
+                            <h4>Dian Sastro</h4>
+                            <p>Pengunjung Konser</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Platform yang sangat membantu bagi kami para penyelenggara acara untuk mempromosikan event di Tasikmalaya."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-image">
+                            <img src="image/testimoni2.jpg" alt="Reza Rahadian">
+                        </div>
+                        <div class="testimonial-author-info">
+                            <h4>Reza Rahadian</h4>
+                            <p>Event Organizer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Desain website yang keren dan mudah digunakan. Sangat membantu untuk menemukan acara menarik di akhir pekan."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-image">
+                            <img src="image/testimoni3.jpeg" alt="Bakti Dwi Pamungkas">
+                        </div>
+                        <div class="testimonial-author-info">
+                            <h4>Bakti Dwi Pamungkas</h4>
+                            <p>Mahasiswa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Subscribe -->
+    <section class="subscribe">
+        <div class="container">
+            <h2 class="section-title">Jangan Lewatkan</h2>
+            <p class="section-subtitle">Dapatkan informasi acara terbaru langsung ke email Anda</p>
+            
+            <form class="subscribe-form">
+                <input type="email" class="subscribe-input" placeholder="Masukkan email Anda...">
+                <button type="submit" class="subscribe-btn">Berlangganan</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-container" id="chatbot-container">
+        <!-- Chatbot Toggle Button -->
+        <div class="chatbot-toggle" id="chatbot-toggle">
+            <i class="fas fa-comment"></i>
+        </div>
+        
+        <!-- Chatbot Box -->
+        <div class="chatbot-box">
+            <!-- Chatbot Header -->
+            <div class="chatbot-header">
+                <img src="image/chatbot-image.png" alt="Bot Avatar">
+                <div>
+                    <div class="chatbot-title">TasikEvent Assistant</div>
+                    <div class="chatbot-status">Online</div>
+                </div>
+            </div>
+            
+            <!-- Chatbot Messages -->
+            <div class="chatbot-messages" id="chatbot-messages">
+                <!-- Initial Bot Message -->
+                <div class="message bot">
+                    Halo! Selamat datang di TasikEvent. Ada yang bisa saya bantu tentang acara di Tasikmalaya?
+                    <div class="message-time">Baru saja</div>
+                </div>
+                
+                <!-- Quick Replies -->
+                <div class="quick-replies">
+                    <div class="quick-reply" onclick="sendQuickReply('Acara minggu ini')">Acara minggu ini</div>
+                    <div class="quick-reply" onclick="sendQuickReply('Kategori musik')">Kategori musik</div>
+                    <div class="quick-reply" onclick="sendQuickReply('Cara beli tiket')">Cara beli tiket</div>
+                </div>
+            </div>
+            
+            <!-- Chatbot Input -->
+            <div class="chatbot-input">
+                <input type="text" id="user-input" placeholder="Ketik pesan Anda..." autocomplete="off">
+                <button class="send-btn" id="send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Column 1 -->
+                <div class="footer-column">
+                    <h3>TasikEvent</h3>
+                    <p>Platform informasi acara terkini di Tasikmalaya. Temukan konser, festival, workshop, dan berbagai acara menarik di Kota Tasikmalaya.</p>
+                    <div class="footer-social">
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div class="footer-column">
+                    <h3>Navigasi</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Beranda</a></li>
+                        <li><a href="#">Acara</a></li>
+                        <li><a href="#">Kategori</a></li>
+                        <li><a href="#">Tentang</a></li>
+                        <li><a href="#">Kontak</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div class="footer-column">
+                    <h3>Kategori</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Musik</a></li>
+                        <li><a href="#">Seni</a></li>
+                        <li><a href="#">Kuliner</a></li>
+                        <li><a href="#">Teater</a></li>
+                        <li><a href="#">Olahraga</a></li>
+                        <li><a href="#">Pendidikan</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul class="footer-links">
+                        <li>Email: info@tasikevent.id</li>
+                        <li>Phone: +62 265 123456</li>
+                        <li>Alamat: Jl. Siliwangi No. 123, Tasikmalaya</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 TasikEvent. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js" defer></script>
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    if (targetId) {
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Animation for event cards
+            const eventCards = document.querySelectorAll('.event-card');
+            
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = 1;
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                eventCards.forEach(card => {
+                    card.style.opacity = 0;
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    observer.observe(card);
+                });
+            }
+            
+            // Form submission handling
+            const subscribeForm = document.querySelector('.subscribe-form');
+            if (subscribeForm) {
+                subscribeForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const emailInput = this.querySelector('.subscribe-input');
+                    
+                    if (emailInput.value.trim() !== '') {
+                        // This would normally send data to a backend
+                        alert('Terima kasih telah berlangganan!');
+                        emailInput.value = '';
+                    } else {
+                        alert('Silakan masukkan email Anda.');
+                    }
+                });
+            }
+            
+            // Hamburger Menu
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            const authMenu = document.getElementById('auth-menu');
+
+            if (hamburger) {
+                hamburger.addEventListener('click', function () {
+                    navMenu.classList.toggle('active');
+                    authMenu.classList.toggle('active');
+                });
+            }
+
+            document.querySelectorAll('#nav-menu a, #auth-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    authMenu.classList.remove('active');
+                });
+            }); 
+
+            // Search functionality
+            const searchBtn = document.querySelector('.search-btn');
+            if (searchBtn) {
+                searchBtn.addEventListener('click', function() {
+                    const searchInput = document.querySelector('.search-input');
+                    const searchTerm = searchInput.value.trim();
+                    
+                    if (searchTerm !== '') {
+                        // This would normally trigger a search on the backend
+                        alert('Mencari: ' + searchTerm);
+                    } else {
+                        alert('Silakan masukkan kata kunci untuk mencari acara.');
+                    }
+                });
+            }
+        }); 
+    </script>
+</body>
+</html>

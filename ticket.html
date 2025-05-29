@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembelian Tiket - TasikEvent</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="script.js">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1DB954; /* Warna hijau Spotify */
+            --primary-light: #1ED760; /* Warna hijau Spotify yang lebih terang */
+            --secondary: #1DB954;
+            --dark: #E0E0E0; /* Warna dark Spotify */
+            --light: #212121;
+            --gray: #E0E0E0;
+            --white: #121212;
+            --input-bg: #333333;
+            --border-color: #535353;
+            --error: #FF4444;
+            --success: #1DB954;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            margin: 0;
+            padding: 0;
+        }
+
+        .ticket-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .event-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .event-details {
+                flex-direction: row;
+            }
+        }
+
+        .event-image {
+            flex: 1;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .event-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .event-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .event-badge {
+            background-color: var(--primary);
+            color: var(--light);
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .event-title {
+            font-size: 2.5rem;
+            margin: 0;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .event-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .meta-item i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .event-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .ticket-options {
+            background-color: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .ticket-types {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .ticket-types {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .ticket-type {
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .ticket-type:hover, .ticket-type.selected {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .ticket-type.selected:before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background-color: var(--primary);
+            color: var(--light);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ticket-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .ticket-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .ticket-benefits {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ticket-benefits li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .ticket-benefits li:before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+        }
+
+        .ticket-quantity {
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .qty-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--primary);
+            color: var(--light);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .qty-btn:hover {
+            background-color: var(--primary-light);
+        }
+
+        .qty-input {
+            width: 40px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--input-bg);
+            color: var(--dark);
+        }
+
+        .buyer-info {
+            background-color: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--input-bg);
+            color: var(--dark);
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .form-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .payment-options {
+            background-color: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .payment-methods {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .payment-method {
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover, .payment-method.selected {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .payment-logo {
+            height: 40px;
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .checkout-summary {
+            background-color: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            font-weight: 500;
+        }
+
+        .summary-value {
+            font-weight: 600;
+        }
+
+        .total-row {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .checkout-btn:hover {
+            background-color: var(--primary-light);
+        }
+
+        /* Ticket Preview Animation */
+        .ticket-preview {
+            perspective: 1000px;
+            margin-top: 2rem;
+        }
+
+        .ticket-card {
+            background: linear-gradient(145deg, var(--primary) 0%, #0D47A1 100%);
+            border-radius: 16px;
+            color: white;
+            padding: 2rem;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .ticket-preview:hover .ticket-card {
+            transform: rotateY(10deg) rotateX(5deg);
+        }
+
+        .ticket-card:before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0.2) 0%,
+                rgba(255, 255, 255, 0.05) 40%,
+                rgba(255, 255, 255, 0) 60%
+            );
+            transform: rotate(-45deg);
+            pointer-events: none;
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .ticket-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .ticket-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .ticket-content {
+            margin-bottom: 2rem;
+        }
+
+        .ticket-event-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ticket-event-details {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .ticket-detail {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-bottom: 0.3rem;
+        }
+
+        .detail-value {
+            font-weight: 600;
+        }
+
+        .ticket-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ticket-qr {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--light);
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .event-details {
+                flex-direction: column;
+            }
+            
+            .event-image {
+                height: 300px;
+            }
+            
+            .ticket-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-methods {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="header-inner">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <img src="image/primary-logo.png" alt="TasikEvent Logo">
+                        </div>
+                        <div class="logo-text-container">
+                            <div class="logo-text">TasikEvent</div>
+                        </div>
+                    </div>
+        
+                    <!-- Hamburger menu -->
+                    <div class="hamburger" id="hamburger">
+                        <i class="fas fa-bars"></i>
+                    </div>
+        
+                    <nav class="nav-links" id="nav-menu">
+                        <ul>
+                            <li><a href="index.html">Beranda</a></li>
+                            <li><a href="event.html">Acara</a></li>
+                            <li><a href="categori.html">Kategori</a></li>
+                            <li><a href="about.html">Tentang</a></li>
+                            <li><a href="contact.html">Kontak</a></li>
+                        </ul>
+                    </nav>
+        
+                    <ul class="auth-buttons" id="auth-menu">
+                        <li><a href="login.html">Masuk</a></li>
+                        <li><a href="register.html">Daftar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+    
+        <!-- Main Content -->
+        <div class="ticket-container">
+            <!-- Event Details -->
+            <section class="event-details">
+                <div class="event-image">
+                    <img src="image/event1.jpg" alt="Tasik Jazz Festival" id="event-image">
+                </div>
+                <div class="event-info">
+                    <div>
+                        <div class="event-badge" id="event-category">Musik</div>
+                        <h1 class="event-title" id="event-title">Tasik Jazz Festival</h1>
+                        <div class="event-meta">
+                            <div class="meta-item">
+                                <i class="far fa-calendar"></i>
+                                <span id="event-date">15 Mei 2025</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="far fa-clock"></i>
+                                <span id="event-time">19:00 - 22:00 WIB</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span id="event-location">Taman Kota Tasikmalaya</span>
+                            </div>
+                        </div>
+                        <p class="event-description" id="event-description">
+                            Nikmati pertunjukan jazz dari musisi terbaik lokal dan nasional dalam suasana yang indah di Taman Kota. Tasik Jazz Festival akan menampilkan musisi papan atas seperti Indra Lesmana, Tompi, dan Syaharani yang akan menghadirkan alunan jazz yang menenangkan jiwa.
+                        </p>
+                    </div>
+                    
+                    <!-- Ticket Preview -->
+                    <div class="ticket-preview">
+                        <div class="ticket-card">
+                            <div class="ticket-header">
+                                <div class="ticket-logo">TasikEvent</div>
+                                <div class="ticket-badge" id="preview-ticket-type">TIKET VIP</div>
+                            </div>
+                            <div class="ticket-content">
+                                <h3 class="ticket-event-title" id="preview-event-title">Tasik Jazz Festival</h3>
+                                <div class="ticket-event-details">
+                                    <div class="ticket-detail">
+                                        <span class="detail-label">Tanggal</span>
+                                        <span class="detail-value" id="preview-date">15 Mei 2025</span>
+                                    </div>
+                                    <div class="ticket-detail">
+                                        <span class="detail-label">Waktu</span>
+                                        <span class="detail-value" id="preview-time">19:00 WIB</span>
+                                    </div>
+                                    <div class="ticket-detail">
+                                        <span class="detail-label">Tempat</span>
+                                        <span class="detail-value" id="preview-location">Taman Kota</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ticket-footer">
+                                <div class="ticket-owner">
+                                    <span class="detail-label">Nama</span>
+                                    <span class="detail-value" id="preview-name">Nama Anda</span>
+                                </div>
+                                <div class="ticket-qr" id="qr-code">
+                                    QR Code
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+            <!-- Ticket Options -->
+            <section class="ticket-options">
+                <h2 class="section-title">Pilih Tiket</h2>
+                <div class="ticket-types" id="ticket-types-container">
+                    <!-- Regular Ticket -->
+                    <div class="ticket-type" id="regular" data-price="150000" data-name="Regular">
+                        <h3 class="ticket-name">Regular</h3>
+                        <div class="ticket-price">Rp 150.000</div>
+                        <ul class="ticket-benefits">
+                            <li>Akses ke semua pertunjukan</li>
+                            <li>Area standing</li>
+                            <li>Merchandise dasar</li>
+                        </ul>
+                        <div class="ticket-quantity">
+                            <span>Jumlah:</span>
+                            <div class="quantity-control">
+                                <button class="qty-btn minus" data-ticket="regular">-</button>
+                                <input type="text" class="qty-input" value="0" data-ticket="regular" readonly>
+                                <button class="qty-btn plus" data-ticket="regular">+</button>
+                            </div>
+                        </div>
+                        <div class="ticket-availability">
+                            <span class="availability-text">Tersisa: <span class="stock-count" data-ticket="regular">50</span> tiket</span>
+                        </div>
+                    </div>
+    
+                    <!-- VIP Ticket -->
+                    <div class="ticket-type selected" id="vip" data-price="300000" data-name="VIP">
+                        <h3 class="ticket-name">VIP</h3>
+                        <div class="ticket-price">Rp 300.000</div>
+                        <ul class="ticket-benefits">
+                            <li>Akses ke semua pertunjukan</li>
+                            <li>Area khusus dengan kursi</li>
+                            <li>Merchandise eksklusif</li>
+                            <li>Minuman gratis</li>
+                        </ul>
+                        <div class="ticket-quantity">
+                            <span>Jumlah:</span>
+                            <div class="quantity-control">
+                                <button class="qty-btn minus" data-ticket="vip">-</button>
+                                <input type="text" class="qty-input" value="1" data-ticket="vip" readonly>
+                                <button class="qty-btn plus" data-ticket="vip">+</button>
+                            </div>
+                        </div>
+                        <div class="ticket-availability">
+                            <span class="availability-text">Tersisa: <span class="stock-count" data-ticket="vip">25</span> tiket</span>
+                        </div>
+                    </div>
+    
+                    <!-- VVIP Ticket -->
+                    <div class="ticket-type" id="vvip" data-price="500000" data-name="VVIP">
+                        <h3 class="ticket-name">VVIP</h3>
+                        <div class="ticket-price">Rp 500.000</div>
+                        <ul class="ticket-benefits">
+                            <li>Akses ke semua pertunjukan</li>
+                            <li>Tempat duduk prioritas</li>
+                            <li>Merchandise premium</li>
+                            <li>Makan & minum gratis</li>
+                            <li>Meet & Greet dengan artis</li>
+                        </ul>
+                        <div class="ticket-quantity">
+                            <span>Jumlah:</span>
+                            <div class="quantity-control">
+                                <button class="qty-btn minus" data-ticket="vvip">-</button>
+                                <input type="text" class="qty-input" value="0" data-ticket="vvip" readonly>
+                                <button class="qty-btn plus" data-ticket="vvip">+</button>
+                            </div>
+                        </div>
+                        <div class="ticket-availability">
+                            <span class="availability-text">Tersisa: <span class="stock-count" data-ticket="vvip">10</span> tiket</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+            <!-- Buyer Information -->
+            <section class="buyer-info">
+                <h2 class="section-title">Informasi Pembeli</h2>
+                <form id="buyerForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Nama Lengkap <span class="required">*</span></label>
+                            <input type="text" id="name" class="form-input" placeholder="Masukkan nama lengkap Anda" required>
+                            <span class="error-message" id="name-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email <span class="required">*</span></label>
+                            <input type="email" id="email" class="form-input" placeholder="Masukkan email Anda" required>
+                            <span class="error-message" id="email-error"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Nomor Telepon <span class="required">*</span></label>
+                            <input type="tel" id="phone" class="form-input" placeholder="Contoh: 08123456789" required>
+                            <span class="error-message" id="phone-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="id">Nomor KTP <span class="required">*</span></label>
+                            <input type="text" id="id" class="form-input" placeholder="Masukkan 16 digit nomor KTP" required maxlength="16">
+                            <span class="error-message" id="id-error"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="address">Alamat</label>
+                            <textarea id="address" class="form-input" placeholder="Masukkan alamat lengkap Anda" rows="3"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </section>
+    
+            <!-- Payment Options -->
+            <section class="payment-options">
+                <h2 class="section-title">Metode Pembayaran</h2>
+                <div class="payment-methods" id="payment-methods-container">
+                    <!-- Bank Transfer -->
+                    <div class="payment-category">
+                        <h4>Transfer Bank</h4>
+                        <div class="payment-method selected" data-method="bca" data-fee="0">
+                            <img src="image/logo-bca.png" alt="BCA" class="payment-logo">
+                            <div class="payment-name">BCA Virtual Account</div>
+                            <div class="payment-fee">Gratis</div>
+                        </div>
+                        <div class="payment-method" data-method="mandiri" data-fee="2500">
+                            <img src="image/logo-mandiri.png" alt="Mandiri" class="payment-logo">
+                            <div class="payment-name">Mandiri Virtual Account</div>
+                            <div class="payment-fee">+ Rp 2.500</div>
+                        </div>
+                        <div class="payment-method" data-method="bni" data-fee="2500">
+                            <img src="image/logo-bni.png" alt="BNI" class="payment-logo">
+                            <div class="payment-name">BNI Virtual Account</div>
+                            <div class="payment-fee">+ Rp 2.500</div>
+                        </div>
+                    </div>
+                    
+                    <!-- E-Wallet -->
+                    <div class="payment-category">
+                        <h4>E-Wallet</h4>
+                        <div class="payment-method" data-method="dana" data-fee="1000">
+                            <img src="image/logo-dana.png" alt="DANA" class="payment-logo">
+                            <div class="payment-name">DANA</div>
+                            <div class="payment-fee">+ Rp 1.000</div>
+                        </div>
+                        <div class="payment-method" data-method="gopay" data-fee="1000">
+                            <img src="image/logo-gopay.png" alt="GoPay" class="payment-logo">
+                            <div class="payment-name">GoPay</div>
+                            <div class="payment-fee">+ Rp 1.000</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+            <!-- Discount Code -->
+            <section class="discount-section">
+                <h2 class="section-title">Kode Diskon</h2>
+                <div class="discount-input-group">
+                    <input type="text" id="discount-code" class="form-input" placeholder="Masukkan kode diskon">
+                    <button type="button" id="apply-discount" class="discount-btn">Gunakan</button>
+                </div>
+                <div id="discount-message" class="discount-message"></div>
+            </section>
+    
+            <!-- Checkout Summary -->
+            <section class="checkout-summary">
+                <h2 class="section-title">Ringkasan Pembelian</h2>
+                <div id="summary-items">
+                    <div class="summary-item">
+                        <span class="summary-label">Tiket VIP (1 x Rp 300.000)</span>
+                        <span class="summary-value">Rp 300.000</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Biaya Admin</span>
+                        <span class="summary-value">Rp 5.000</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Biaya Payment</span>
+                        <span class="summary-value">Rp 0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Pajak (10%)</span>
+                        <span class="summary-value">Rp 30.000</span>
+                    </div>
+                    <div class="summary-item discount-item" id="discount-item" style="display: none;">
+                        <span class="summary-label">Diskon</span>
+                        <span class="summary-value discount-value">- Rp 0</span>
+                    </div>
+                    <div class="summary-item total-row">
+                        <span class="summary-label">Total Pembayaran</span>
+                        <span class="summary-value" id="total-amount">Rp 335.000</span>
+                    </div>
+                </div>
+    
+                <button type="button" class="checkout-btn" id="checkout-btn">Bayar Sekarang</button>
+            </section>
+        </div>
+    
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-grid">
+                    <!-- Column 1 -->
+                    <div class="footer-column">
+                        <h3>TasikEvent</h3>
+                        <p>Platform informasi acara terkini di Tasikmalaya. Temukan konser, festival, workshop, dan berbagai acara menarik di Kota Tasikmalaya.</p>
+                        <div class="footer-social">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-instagram"></i>
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Column 2 -->
+                    <div class="footer-column">
+                        <h3>Navigasi</h3>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Beranda</a></li>
+                            <li><a href="acara.html">Acara</a></li>
+                            <li><a href="kategori.html">Kategori</a></li>
+                            <li><a href="tentang.html">Tentang</a></li>
+                            <li><a href="kontak.html">Kontak</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Column 3 -->
+                    <div class="footer-column">
+                        <h3>Kategori</h3>
+                        <ul class="footer-links">
+                            <li><a href="kategori.html#musik">Musik</a></li>
+                            <li><a href="kategori.html#seni">Seni</a></li>
+                            <li><a href="kategori.html#kuliner">Kuliner</a></li>
+                            <li><a href="kategori.html#teater">Teater</a></li>
+                            <li><a href="kategori.html#olahraga">Olahraga</a></li>
+                            <li><a href="kategori.html#pendidikan">Pendidikan</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Column 4 -->
+                    <div class="footer-column">
+                        <h3>Kontak</h3>
+                        <ul class="footer-links">
+                            <li>Email: info@tasikevent.id</li>
+                            <li>Phone: +62 265 123456</li>
+                            <li>Alamat: Jl. Siliwangi No. 123, Tasikmalaya</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>&copy; 2025 TasikEvent. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    
+        <!-- JavaScript -->
+    <script src="script.js" defer></script>
+    <script>
+        // Enhanced JavaScript for Ticket Booking System
+        class TicketBookingSystem {
+            constructor() {
+                this.ticketData = {
+                    regular: { price: 150000, stock: 50, maxPerPerson: 10 },
+                    vip: { price: 300000, stock: 25, maxPerPerson: 5 },
+                    vvip: { price: 500000, stock: 10, maxPerPerson: 2 }
+                };
+                
+                this.cart = {
+                    regular: 0,
+                    vip: 1,
+                    vvip: 0
+                };
+                
+                this.paymentFees = {
+                    bca: 0,
+                    mandiri: 2500,
+                    bni: 2500,
+                    dana: 1000,
+                    gopay: 1000
+                };
+                
+                this.discountCodes = {
+                    'WELCOME10': { type: 'percentage', value: 10, minAmount: 100000 },
+                    'FIRST50': { type: 'fixed', value: 50000, minAmount: 200000 },
+                    'STUDENT20': { type: 'percentage', value: 20, minAmount: 150000 }
+                };
+                
+                this.selectedPayment = 'bca';
+                this.appliedDiscount = null;
+                this.constants = {
+                    adminFee: 5000,
+                    taxRate: 0.1
+                };
+                
+                this.init();
+            }
+            
+            init() {
+                this.bindEvents();
+                this.updateSummary();
+                this.initializeTicketPreview();
+                this.setupFormValidation();
+            }
+            
+            bindEvents() {
+                // Hamburger menu
+                this.setupHamburgerMenu();
+                
+                // Ticket type selection
+                document.querySelectorAll('.ticket-type').forEach(ticket => {
+                    ticket.addEventListener('click', (e) => {
+                        if (!e.target.closest('.quantity-control')) {
+                            this.selectTicketType(ticket.id);
+                        }
+                    });
+                });
+                
+                // Quantity controls
+                document.querySelectorAll('.qty-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const ticketType = btn.dataset.ticket;
+                        const isIncrement = btn.classList.contains('plus');
+                        this.updateQuantity(ticketType, isIncrement);
+                    });
+                });
+                
+                // Payment method selection
+                document.querySelectorAll('.payment-method').forEach(method => {
+                    method.addEventListener('click', () => {
+                        this.selectPaymentMethod(method.dataset.method);
+                    });
+                });
+                
+                // Form inputs
+                document.getElementById('name').addEventListener('input', (e) => {
+                    this.updateTicketPreview('name', e.target.value);
+                    this.validateField('name');
+                });
+                
+                document.getElementById('email').addEventListener('input', () => {
+                    this.validateField('email');
+                });
+                
+                document.getElementById('phone').addEventListener('input', () => {
+                    this.validateField('phone');
+                });
+                
+                document.getElementById('id').addEventListener('input', () => {
+                    this.validateField('id');
+                });
+                
+                // Discount code
+                document.getElementById('apply-discount').addEventListener('click', () => {
+                    this.applyDiscountCode();
+                });
+                
+                document.getElementById('discount-code').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.applyDiscountCode();
+                    }
+                });
+                
+                // Checkout button
+                document.getElementById('checkout-btn').addEventListener('click', () => {
+                    this.processCheckout();
+                });
+                
+                // Real-time preview updates
+                this.setupRealTimePreview();
+            }
+            
+            setupHamburgerMenu() {
+                const hamburger = document.getElementById('hamburger');
+                const navMenu = document.getElementById('nav-menu');
+                const authMenu = document.getElementById('auth-menu');
+
+                if (hamburger) {
+                    hamburger.addEventListener('click', function () {
+                        navMenu.classList.toggle('active');
+                        authMenu.classList.toggle('active');
+                    });
+                }
+
+                document.querySelectorAll('#nav-menu a, #auth-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                        authMenu.classList.remove('active');
+                    });
+                });
+            }
+            
+            selectTicketType(ticketId) {
+                // Remove selected class from all tickets
+                document.querySelectorAll('.ticket-type').forEach(t => 
+                    t.classList.remove('selected'));
+                
+                // Add selected class to clicked ticket
+                document.getElementById(ticketId).classList.add('selected');
+                
+                // Update ticket preview
+                const ticketNames = {
+                    regular: 'TIKET REGULAR',
+                    vip: 'TIKET VIP',
+                    vvip: 'TIKET VVIP'
+                };
+                
+                document.getElementById('preview-ticket-type').textContent = 
+                    ticketNames[ticketId];
+            }
+            
+            updateQuantity(ticketType, isIncrement) {
+                const input = document.querySelector(`input[data-ticket="${ticketType}"]`);
+                const currentQty = parseInt(input.value);
+                const stock = this.ticketData[ticketType].stock;
+                const maxPerPerson = this.ticketData[ticketType].maxPerPerson;
+                
+                let newQty = isIncrement ? currentQty + 1 : currentQty - 1;
+                
+                // Validate quantity
+                if (newQty < 0) newQty = 0;
+                if (newQty > stock) {
+                    this.showNotification(`Stok tiket ${ticketType.toUpperCase()} tidak mencukupi!`, 'error');
+                    return;
+                }
+                if (newQty > maxPerPerson) {
+                    this.showNotification(`Maksimal ${maxPerPerson} tiket ${ticketType.toUpperCase()} per orang!`, 'error');
+                    return;
+                }
+                
+                // Update cart and UI
+                this.cart[ticketType] = newQty;
+                input.value = newQty;
+                
+                // Update stock display
+                const stockDisplay = document.querySelector(`[data-ticket="${ticketType}"].stock-count`);
+                if (stockDisplay) {
+                    stockDisplay.textContent = stock - newQty;
+                }
+                
+                this.updateSummary();
+                this.updateTicketTypeSelection();
+            }
+            
+            updateTicketTypeSelection() {
+                // Auto-select ticket type with quantity > 0
+                for (const [type, qty] of Object.entries(this.cart)) {
+                    if (qty > 0) {
+                        this.selectTicketType(type);
+                        break;
+                    }
+                }
+            }
+            
+            selectPaymentMethod(method) {
+                document.querySelectorAll('.payment-method').forEach(m => 
+                    m.classList.remove('selected'));
+                
+                document.querySelector(`[data-method="${method}"]`).classList.add('selected');
+                this.selectedPayment = method;
+                this.updateSummary();
+            }
+            
+            calculateSubtotal() {
+                let subtotal = 0;
+                for (const [type, qty] of Object.entries(this.cart)) {
+                    subtotal += this.ticketData[type].price * qty;
+                }
+                return subtotal;
+            }
+            
+            calculateTotal() {
+                const subtotal = this.calculateSubtotal();
+                if (subtotal === 0) return 0;
+                
+                const adminFee = this.constants.adminFee;
+                const paymentFee = this.paymentFees[this.selectedPayment] || 0;
+                const tax = subtotal * this.constants.taxRate;
+                
+                let total = subtotal + adminFee + paymentFee + tax;
+                
+                // Apply discount
+                if (this.appliedDiscount) {
+                    const discount = this.appliedDiscount;
+                    if (discount.type === 'percentage') {
+                        total -= (subtotal * discount.value / 100);
+                    } else {
+                        total -= discount.value;
+                    }
+                }
+                
+                return Math.max(0, total);
+            }
+            
+            updateSummary() {
+                const summaryContainer = document.getElementById('summary-items');
+                summaryContainer.innerHTML = '';
+                
+                const subtotal = this.calculateSubtotal();
+                
+                if (subtotal === 0) {
+                    summaryContainer.innerHTML = '<div class="summary-item"><span class="summary-label">Belum ada tiket dipilih</span><span class="summary-value">Rp 0</span></div>';
+                    document.getElementById('checkout-btn').disabled = true;
+                    return;
+                }
+                
+                // Ticket items
+                for (const [type, qty] of Object.entries(this.cart)) {
+                    if (qty > 0) {
+                        const price = this.ticketData[type].price;
+                        const total = price * qty;
+                        const typeName = type.charAt(0).toUpperCase() + type.slice(1);
+                        
+                        summaryContainer.innerHTML += `
+                            <div class="summary-item">
+                                <span class="summary-label">Tiket ${typeName} (${qty} x Rp ${this.formatNumber(price)})</span>
+                                <span class="summary-value">Rp ${this.formatNumber(total)}</span>
+                            </div>
+                        `;
+                    }
+                }
+                
+                const aminFee = this.constants.adminFee;
+                const paymentFee = this.paymentFees[this.selectedPayment] || 0;
+                const tax = subtotal * this.constants.taxRate;
+                
+                // Admin fee
+                summaryContainer.innerHTML += `
+                    <div class="summary-item">
+                        <span class="summary-label">Biaya Admin</span>
+                        <span class="summary-value">Rp ${this.formatNumber(adminFee)}</span>
+                    </div>
+                `;
+                
+                // Payment fee
+                summaryContainer.innerHTML += `
+                    <div class="summary-item">
+                        <span class="summary-label">Biaya Payment</span>
+                        <span class="summary-value">Rp ${this.formatNumber(paymentFee)}</span>
+                    </div>
+                `;
+                
+                // Tax
+                summaryContainer.innerHTML += `
+                    <div class="summary-item">
+                        <span class="summary-label">Pajak (10%)</span>
+                        <span class="summary-value">Rp ${this.formatNumber(tax)}</span>
+                    </div>
+                `;
+                
+                
+                // Discount
+                if (this.appliedDiscount) {
+                    let discountAmount = 0;
+                    if (this.appliedDiscount.type === 'percentage') {
+                        discountAmount = subtotal * this.appliedDiscount.value / 100;
+                    } else {
+                        discountAmount = this.appliedDiscount.value;
+                    }
+                    
+                    summaryContainer.innerHTML += `
+                        <div class="summary-item discount-item">
+                            <span class="summary-label">Diskon</span>
+                            <span class="summary-value discount-value">- Rp ${this.formatNumber(discountAmount)}</span>
+                        </div>
+                    `;
+                }
+                
+                // Total
+                const total = this.calculateTotal();
+                summaryContainer.innerHTML += `
+                    <div class="summary-item total-row">
+                        <span class="summary-label">Total Pembayaran</span>
+                        <span class="summary-value">Rp ${this.formatNumber(total)}</span>
+                    </div>
+                `;
+                
+                document.getElementById('checkout-btn').disabled = false;
+            }
+            
+            applyDiscountCode() {
+                const codeInput = document.getElementById('discount-code');
+                const code = codeInput.value.trim().toUpperCase();
+                const messageDiv = document.getElementById('discount-message');
+                
+                if (!code) {
+                    this.showDiscountMessage('Masukkan kode diskon terlebih dahulu', 'error');
+                    return;
+                }
+                
+                const discount = this.discountCodes[code];
+                const subtotal = this.calculateSubtotal();
+                
+                if (!discount) {
+                    this.showDiscountMessage('Kode diskon tidak valid', 'error');
+                    return;
+                }
+                
+                if (subtotal < discount.minAmount) {
+                    this.showDiscountMessage(`Minimal pembelian Rp ${this.formatNumber(discount.minAmount)} untuk menggunakan kode ini`, 'error');
+                    return;
+                }
+                
+                if (this.appliedDiscount) {
+                    this.showDiscountMessage('Hanya bisa menggunakan satu kode diskon', 'error');
+                    return;
+                }
+                
+                this.appliedDiscount = discount;
+                const discountText = discount.type === 'percentage' ? 
+                    `${discount.value}%` : `Rp ${this.formatNumber(discount.value)}`;
+                
+                this.showDiscountMessage(`Kode diskon berhasil diterapkan! Anda mendapat diskon ${discountText}`, 'success');
+                codeInput.disabled = true;
+                document.getElementById('apply-discount').textContent = 'Hapus';
+                document.getElementById('apply-discount').onclick = () => this.removeDiscount();
+                
+                this.updateSummary();
+            }
+            
+            removeDiscount() {
+                this.appliedDiscount = null;
+                const codeInput = document.getElementById('discount-code');
+                codeInput.value = '';
+                codeInput.disabled = false;
+                document.getElementById('apply-discount').textContent = 'Gunakan';
+                document.getElementById('apply-discount').onclick = () => this.applyDiscountCode();
+                
+                this.showDiscountMessage('Kode diskon dihapus', 'info');
+                this.updateSummary();
+            }
+            
+            showDiscountMessage(message, type) {
+                const messageDiv = document.getElementById('discount-message');
+                messageDiv.textContent = message;
+                messageDiv.className = `discount-message ${type}`;
+                
+                setTimeout(() => {
+                    messageDiv.textContent = '';
+                    messageDiv.className = 'discount-message';
+                }, 3000);
+            }
+            
+            setupFormValidation() {
+                const form = document.getElementById('buyerForm');
+                const inputs = form.querySelectorAll('input[required]');
+                
+                inputs.forEach(input => {
+                    input.addEventListener('blur', () => this.validateField(input.id));
+                    input.addEventListener('input', () => this.clearError(input.id));
+                });
+            }
+            
+            validateField(fieldId) {
+                const field = document.getElementById(fieldId);
+                const errorDiv = document.getElementById(`${fieldId}-error`);
+                const value = field.value.trim();
+                
+                let isValid = true;
+                let errorMessage = '';
+                
+                switch (fieldId) {
+                    case 'name':
+                        if (!value) {
+                            errorMessage = 'Nama lengkap harus diisi';
+                            isValid = false;
+                        } else if (value.length <  3) {
+                            errorMessage = 'Nama minimal 3 karakter';
+                            isValid = false;
+                        }
+                        break;
+                        
+                    case 'email':
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!value) {
+                            errorMessage = 'Email harus diisi';
+                            isValid = false;
+                        } else if (!emailRegex.test(value)) {
+                            errorMessage = 'Format email tidak valid';
+                            isValid = false;
+                        }
+                        break;
+                        
+                    case 'phone':
+                        const phoneRegex = /^(\+62|62|0)[0-9]{9,12}$/;
+                        if (!value) {
+                            errorMessage = 'Nomor telepon harus diisi';
+                            isValid = false;
+                        } else if (!phoneRegex.test(value)) {
+                            errorMessage = 'Format nomor telepon tidak valid';
+                            isValid = false;
+                        }
+                        break;
+                        
+                    case 'id':
+                        if (!value) {
+                            errorMessage = 'Nomor KTP harus diisi';
+                            isValid = false;
+                        } else if (value.length !== 16) {
+                            errorMessage = 'Nomor KTP harus 16 digit';
+                            isValid = false;
+                        } else if (!/^\d+$/.test(value)) {
+                            errorMessage = 'Nomor KTP hanya boleh angka';
+                            isValid = false;
+                        }
+                        break;
+                }
+                
+                if (errorDiv) {
+                    errorDiv.textContent = errorMessage;
+                    errorDiv.style.display = isValid ? 'none' : 'block';
+                }
+                
+                field.style.borderColor = isValid ? '' : 'var(--error)';
+                return isValid;
+            }
+            
+            clearError(fieldId) {
+                const errorDiv = document.getElementById(`${fieldId}-error`);
+                const field = document.getElementById(fieldId);
+                
+                if (errorDiv) {
+                    errorDiv.style.display = 'none';
+                }
+                field.style.borderColor = '';
+            }
+            
+            validateForm() {
+                const requiredFields = ['name', 'email', 'phone', 'id'];
+                let isValid = true;
+                
+                requiredFields.forEach(fieldId => {
+                    if (!this.validateField(fieldId)) {
+                        isValid = false;
+                    }
+                });
+                
+                return isValid;
+            }
+            
+            setupRealTimePreview() {
+                // Update preview when form changes
+                const nameField = document.getElementById('name');
+                nameField.addEventListener('input', (e) => {
+                    this.updateTicketPreview('name', e.target.value || 'Nama Anda');
+                });
+            }
+            
+            updateTicketPreview(field, value) {
+                const previewElement = document.getElementById(`preview-${field}`);
+                if (previewElement) {
+                    previewElement.textContent = value;
+                }
+            }
+            
+            initializeTicketPreview() {
+                // Set initial preview values
+                document.getElementById('preview-event-title').textContent = 
+                    document.getElementById('event-title').textContent;
+                document.getElementById('preview-date').textContent = 
+                    document.getElementById('event-date').textContent.split(' ')[0] + ' ' + 
+                    document.getElementById('event-date').textContent.split(' ')[1];
+                document.getElementById('preview-time').textContent = 
+                    document.getElementById('event-time').textContent.split(' - ')[0];
+                document.getElementById('preview-location').textContent = 
+                    document.getElementById('event-location').textContent.split(' ')[0] + ' ' +
+                    document.getElementById('event-location').textContent.split(' ')[1];
+            }
+            
+            processCheckout() {
+                // Validate form
+                if (!this.validateForm()) {
+                    this.showNotification('Harap lengkapi semua data yang diperlukan', 'error');
+                    return;
+                }
+                
+                // Check if any tickets selected
+                const totalTickets = Object.values(this.cart).reduce((sum, qty) => sum + qty, 0);
+                if (totalTickets === 0) {
+                    this.showNotification('Harap pilih minimal satu tiket', 'error');
+                    return;
+                }
+                
+                // Prepare order data
+                const orderData = this.prepareOrderData();
+                
+                // Show loading state
+                const checkoutBtn = document.getElementById('checkout-btn');
+                const originalText = checkoutBtn.textContent;
+                checkoutBtn.textContent = 'Memproses...';
+                checkoutBtn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    this.handleCheckoutSuccess(orderData);
+                    checkoutBtn.textContent = originalText;
+                    checkoutBtn.disabled = false;
+                }, 2000);
+            }
+            
+            prepareOrderData() {
+                const formData = new FormData(document.getElementById('buyerForm'));
+                
+                return {
+                    event: {
+                        id: 1,
+                        title: document.getElementById('event-title').textContent,
+                        date: document.getElementById('event-date').textContent,
+                        time: document.getElementById('event-time').textContent,
+                        location: document.getElementById('event-location').textContent
+                    },
+                    tickets: this.cart,
+                    buyer: {
+                        name: formData.get('name') || document.getElementById('name').value,
+                        email: formData.get('email') || document.getElementById('email').value,
+                        phone: formData.get('phone') || document.getElementById('phone').value,
+                        id: formData.get('id') || document.getElementById('id').value,
+                        address: formData.get('address') || document.getElementById('address').value
+                    },
+                    payment: {
+                        method: this.selectedPayment,
+                        fee: this.paymentFees[this.selectedPayment]
+                    },
+                    discount: this.appliedDiscount,
+                    summary: {
+                        subtotal: this.calculateSubtotal(),
+                        total: this.calculateTotal(),
+                        adminFee: this.constants.adminFee,
+                        tax: this.calculateSubtotal() * this.constants.taxRate
+                    },
+                    orderId: this.generateOrderId(),
+                    timestamp: new Date().toISOString()
+                };
+            }
+            
+            generateOrderId() {
+                const timestamp = Date.now();
+                const random = Math.floor(Math.random() * 1000);
+                return `TK${timestamp}${random}`;
+            }
+            
+            handleCheckoutSuccess(orderData) {
+                // Store order data (in real app, this would be sent to server)
+                localStorage.setItem('currentOrder', JSON.stringify(orderData));
+                
+                // Show success message
+                this.showNotification('Pesanan berhasil dibuat! Mengarahkan ke halaman pembayaran...', 'success');
+                
+                // Redirect to payment page
+                setTimeout(() => {
+                    window.location.href = `payment.html?order=${orderData.orderId}`;
+                }, 1500);
+            }
+            
+            showNotification(message, type = 'info') {
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                notification.innerHTML = `
+                    <i class="fas ${this.getNotificationIcon(type)}"></i>
+                    <span>${message}</span>
+                    <button class="notification-close">&times;</button>
+                `;
+                
+                // Add to page
+                document.body.appendChild(notification);
+                
+                // Show animation
+                setTimeout(() => notification.classList.add('show'), 100);
+                
+                // Auto remove
+                setTimeout(() => this.removeNotification(notification), 5000);
+                
+                // Manual close
+                notification.querySelector('.notification-close').addEventListener('click', () => {
+                    this.removeNotification(notification);
+                });
+            }
+            
+            removeNotification(notification) {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }
+            
+            getNotificationIcon(type) {
+                const icons = {
+                    success: 'fa-check-circle',
+                    error: 'fa-exclamation-circle',
+                    warning: 'fa-exclamation-triangle',
+                    info: 'fa-info-circle'
+                };
+                return icons[type] || icons.info;
+            }
+            
+            formatNumber(num) {
+                return new Intl.NumberFormat('id-ID').format(num);
+            }
+        }
+        
+        // Initialize the system when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new TicketBookingSystem();
+        });
+    </script>
+</body>
+</html>

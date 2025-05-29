@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TasikEvent - Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="image/primary-logo.png" alt="TasikEvent Logo">
+                    </div>
+                    <div class="logo-text-container">
+                        <div class="logo-text">TasikEvent</div>
+                    </div>
+                </div>
+    
+                <!-- Hamburger menu -->
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+    
+                <nav class="nav-links" id="nav-menu">
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="event.html">Acara</a></li>
+                        <li><a href="categori.html">Kategori</a></li>
+                        <li><a href="about.html">Tentang</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                    </ul>
+                </nav>
+    
+                <ul class="auth-buttons" id="auth-menu">
+                    <li><a href="login.html">Masuk</a></li>
+                    <li><a href="register.html">Daftar</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Section -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <h2>Masuk ke TasikEvent</h2>
+                        <p>Temukan dan ikuti acara terbaik di Tasikmalaya</p>
+                    </div>
+
+                    <!-- Alert Messages -->
+                    <div id="alert-message" class="alert"></div>
+                    
+                    <div class="social-login">
+                        <button class="social-btn google-btn" type="button">
+                            <i class="fab fa-google"></i>
+                            <span>Masuk dengan Google</span>
+                        </button>
+                        <button class="social-btn facebook-btn" type="button">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Masuk dengan Facebook</span>
+                        </button>
+                    </div>
+                    
+                    <div class="divider">
+                        <span>atau</span>
+                    </div>
+                    
+                    <form class="auth-form" id="loginForm">
+                        <div class="form-group" id="email-group">
+                            <label for="email">Email</label>
+                            <div class="input-group">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+                            </div>
+                            <div class="error-message" id="email-error"></div>
+                        </div>
+                        
+                        <div class="form-group" id="password-group">
+                            <label for="password">Kata Sandi</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="password" name="password" placeholder="Masukkan kata sandi" required>
+                                <i class="toggle-password fas fa-eye" id="toggle-password"></i>
+                            </div>
+                            <div class="error-message" id="password-error"></div>
+                        </div>
+                        
+                        <div class="form-options">
+                            <div class="remember-me">
+                                <input type="checkbox" id="remember" name="remember">
+                                <label for="remember">Ingat saya</label>
+                            </div>
+                            <a href="#" class="forgot-password">Lupa kata sandi?</a>
+                        </div>
+                        
+                        <button type="submit" class="auth-btn" id="loginBtn">
+                            <span id="login-text">Masuk</span>
+                        </button>
+                    </form>
+                    
+                    <div class="auth-footer">
+                        <p>Belum punya akun? <a href="register.html">Daftar sekarang</a></p>
+                    </div>
+                </div>
+                
+                <div class="auth-image">
+                    <img src="image/hero-image-login.jpg" alt="Login TasikEvent">
+                    <div class="auth-overlay">
+                        <h3>Selamat Datang Kembali!</h3>
+                        <p>Jangan lewatkan berbagai acara menarik di Tasikmalaya</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Column 1 -->
+                <div class="footer-column">
+                    <h3>TasikEvent</h3>
+                    <p>Platform informasi acara terkini di Tasikmalaya. Temukan konser, festival, workshop, dan berbagai acara menarik di Kota Tasikmalaya.</p>
+                    <div class="footer-social">
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div class="footer-column">
+                    <h3>Navigasi</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="event.html">Acara</a></li>
+                        <li><a href="categori.html">Kategori</a></li>
+                        <li><a href="about.html">Tentang</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div class="footer-column">
+                    <h3>Kategori</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Musik</a></li>
+                        <li><a href="#">Seni</a></li>
+                        <li><a href="#">Kuliner</a></li>
+                        <li><a href="#">Teater</a></li>
+                        <li><a href="#">Olahraga</a></li>
+                        <li><a href="#">Pendidikan</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul class="footer-links">
+                        <li>Email: info@tasikevent.id</li>
+                        <li>Phone: +62 265 123456</li>
+                        <li>Alamat: Jl. Siliwangi No. 123, Tasikmalaya</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 TasikEvent. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const loginForm = document.getElementById('loginForm');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const rememberCheckbox = document.getElementById('remember');
+            const loginBtn = document.getElementById('loginBtn');
+            const loginText = document.getElementById('login-text');
+            const alertMessage = document.getElementById('alert-message');
+            const togglePassword = document.getElementById('toggle-password');
+
+            // Toggle password visibility
+            if (togglePassword && passwordInput) {
+                togglePassword.addEventListener('click', function() {
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    this.classList.toggle('fa-eye');
+                    this.classList.toggle('fa-eye-slash');
+                });
+            }
+
+            // Utility functions
+            function showAlert(message, type = 'error') {
+                alertMessage.textContent = message;
+                alertMessage.className = `alert ${type} show`;
+                alertMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+                // Auto hide after 5 seconds
+                setTimeout(() => {
+                    hideAlert();
+                }, 5000);
+            }
+
+            function hideAlert() {
+                alertMessage.classList.remove('show');
+            }
+
+            function showLoading() {
+                loginBtn.classList.add('loading');
+                loginText.innerHTML = '<div class="spinner"></div>Masuk...';
+                loginBtn.disabled = true;
+            }
+
+            function hideLoading() {
+                loginBtn.classList.remove('loading');
+                loginText.textContent = 'Masuk';
+                loginBtn.disabled = false;
+            }
+
+            function clearErrors() {
+                document.querySelectorAll('.form-group').forEach(group => {
+                    group.classList.remove('error');
+                });
+                document.querySelectorAll('.error-message').forEach(error => {
+                    error.textContent = '';
+                });
+            }
+
+            function showFieldError(fieldName, message) {
+                const group = document.getElementById(`${fieldName}-group`);
+                const error = document.getElementById(`${fieldName}-error`);
+                if (group) group.classList.add('error');
+                if (error) error.textContent = message;
+            }
+
+            function validateForm() {
+                clearErrors();
+                let isValid = true;
+
+                // Email validation
+                const email = emailInput.value.trim();
+                if (!email) {
+                    showFieldError('email', 'Email harus diisi');
+                    isValid = false;
+                } else if (!isValidEmail(email)) {
+                    showFieldError('email', 'Format email tidak valid');
+                    isValid = false;
+                }
+
+                // Password validation
+                const password = passwordInput.value;
+                if (!password) {
+                    showFieldError('password', 'Password harus diisi');
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            // Form submission
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                hideAlert();
+                
+                if (!validateForm()) {
+                    return;
+                }
+
+                showLoading();
+
+                try {
+                    const formData = {
+                        email: emailInput.value.trim(),
+                        password: passwordInput.value,
+                        remember: rememberCheckbox.checked
+                    };
+
+                    const response = await fetch('login_api.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        showAlert('Login berhasil! Mengalihkan...', 'success');
+                        
+                        // Store user data if needed
+                        if (result.data && result.data.user) {
+                            sessionStorage.setItem('user', JSON.stringify(result.data.user));
+                        }
+
+                        // Redirect after success
+                        setTimeout(() => {
+                            window.location.href = result.data.redirect || 'index.html';
+                        }, 1500);
+                    } else {
+                        showAlert(result.message || 'Login gagal');
+                    }
+                } catch (error) {
+                    console.error('Login error:', error);
+                    showAlert('Terjadi kesalahan koneksi. Silakan coba lagi.');
+                } finally {
+                    hideLoading();
+                }
+            });
+
+            // Real-time validation
+            emailInput.addEventListener('blur', function() {
+                const email = this.value.trim();
+                if (email && !isValidEmail(email)) {
+                    document.getElementById('email-group').classList.add('error');
+                    document.getElementById('email-error').textContent = 'Format email tidak valid';
+                } else {
+                    document.getElementById('email-group').classList.remove('error');
+                    document.getElementById('email-error').textContent = '';
+                }
+            });
+
+            emailInput.addEventListener('input', function() {
+                if (document.getElementById('email-group').classList.contains('error')) {
+                    document.getElementById('email-group').classList.remove('error');
+                    document.getElementById('email-error').textContent = '';
+                }
+            });
+
+            passwordInput.addEventListener('input', function() {
+                if (document.getElementById('password-group').classList.contains('error')) {
+                    document.getElementById('password-group').classList.remove('error');
+                    document.getElementById('password-error').textContent = '';
+                }
+            });
+
+            // Hamburger Menu
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            const authMenu = document.getElementById('auth-menu');
+
+            if (hamburger) {
+                hamburger.addEventListener('click', function () {
+                    navMenu.classList.toggle('active');
+                    authMenu.classList.toggle('active');
+                });
+            }
+
+            document.querySelectorAll('#nav-menu a, #auth-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    authMenu.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
